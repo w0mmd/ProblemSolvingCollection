@@ -1,0 +1,93 @@
+#include <iostream>
+#include <cmath>
+#include <string>
+#include <algorithm>
+#include <cstdlib>
+using namespace std;
+
+enum enCharAndNumbers {
+	CapitalCharacter = 1, SmallCharacter = 2, SpecialCaracter = 3, Digit = 4
+};
+
+int RandomNumber(int From, int To)
+{
+	int RandNumber = rand() % (To - From + 1) + From;
+
+	return RandNumber;
+}
+
+int ReadPositiveNumber(string message)
+{
+	int number = 0;
+
+	do {
+		cout << message << endl;
+		cin >> number;
+	} while (number <= 0);
+
+	return number;
+}
+
+char GetCharacter(enCharAndNumbers CharType)
+{
+	switch (CharType)
+	{
+	case enCharAndNumbers::CapitalCharacter:
+		return char(RandomNumber(65, 90));
+	case enCharAndNumbers::SmallCharacter:
+		return char(RandomNumber(97, 122));
+	case enCharAndNumbers::SpecialCaracter:
+		return char(RandomNumber(33, 46));
+	case enCharAndNumbers::Digit:
+		return char(RandomNumber(48, 57));
+	}
+	return 0;
+}
+
+string GenerateWord(enCharAndNumbers CharType, short Length)
+{
+	string word = "";
+	for (int i = 1; i <= Length; i++)
+	{
+		word = word + GetCharacter(CharType);
+
+	}
+
+	return word;
+}
+
+string GenerateKey()
+{
+	string Key = "";
+
+	Key = GenerateWord(enCharAndNumbers::CapitalCharacter, 4) + " ";
+	Key = Key + GenerateWord(enCharAndNumbers::CapitalCharacter, 4) + " ";
+	Key = Key + GenerateWord(enCharAndNumbers::CapitalCharacter, 4) + " ";
+	Key = Key + GenerateWord(enCharAndNumbers::CapitalCharacter, 4);
+
+	return Key;
+}
+
+void GenerateKeys(int number, string arr[100])
+{
+	for (int i = 0; i < number; i++)
+	{
+		arr[i] = GenerateKey();
+		cout << "Array [" << i << "]: " << arr[i] << endl;
+
+	}
+}
+
+int main()
+{  
+	srand((unsigned)time(NULL));
+	int number = ReadPositiveNumber("Please enter your number to generate the keys:");
+	string arr[100];
+
+	GenerateKeys(number, arr);
+
+	return 0;
+}
+
+
+

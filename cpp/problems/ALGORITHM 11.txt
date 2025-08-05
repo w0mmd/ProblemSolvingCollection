@@ -1,0 +1,58 @@
+#include <iostream>
+#include <cmath>
+#include <string>
+#include <algorithm>
+using namespace std;
+
+int ReadPositiveNumber(string message)
+{
+	int number = 0;
+
+	do {
+		cout << message << endl;
+		cin >> number;
+	} while (number <= 0);
+
+	return number;
+}
+
+int ReversedNumber(int number)
+{
+	int remainder = 0; int number2 = 0;
+
+	while (number > 0)
+	{
+		remainder = number % 10;
+		number = number / 10;
+		number2 = number2 * 10 + remainder;
+	}
+	return number2;
+}
+
+bool CheckPalindromeNumber(int number)
+{
+	if (number == ReversedNumber(number))
+	{
+		return true;
+	}
+
+	false;
+
+}
+
+void PrintNumber(int number)
+{
+	if (CheckPalindromeNumber(number) == true)
+		cout << "it a palindrome number." << endl;
+	else
+		cout << "it is not a palindrome number." << endl;
+}
+
+int main()
+{  
+	PrintNumber(ReadPositiveNumber("Please enter a number to check if it is a Palindrome number or not:"));
+
+	return 0;
+}
+
+

@@ -1,0 +1,71 @@
+#include <iostream>
+#include <cmath>
+#include <string>
+#include <algorithm>
+#include <cstdlib>
+using namespace std;
+
+int ReadNumber()
+{
+	int number = 0;
+
+	cout << "Please enter your number?" << endl;
+	cin >> number;
+
+	return number;
+}
+
+int RandomNumber(int from, int to)
+{
+	int RandNumber = rand() % (to - from + 1) + from;
+
+	return RandNumber;
+}
+
+void AddArrayElement(int number, int arr[100], int &arrlength)
+{
+	arrlength++;
+	arr[arrlength - 1] = number;
+}
+
+void Arrayone(int arr[100], int& arrlength, int number)
+{
+	for (int i = 0; i < number; i++)
+	{
+		arr[i] = RandomNumber(1, 100);
+		arrlength++;
+		cout << arr[i] << " ";
+	}
+}
+void Arraytwo(int arr[100], int arrlength, int number, int arr2[100], int arr2length)
+{
+	for (int i = 0; i < number; i++)
+	{
+		AddArrayElement(arr[i], arr2, arr2length);
+		cout << arr2[i] << " ";
+
+	}
+}
+
+
+
+
+int main()
+{  
+	srand((unsigned)time(NULL));
+
+	int arr[100], arr2[100], arrlength = 0, arr2length = 0;
+	
+	int number = ReadNumber();
+
+	cout << "Array 1 elements: \n";
+	Arrayone(arr, arrlength, number);
+
+	cout << endl;
+
+	cout << "Array 2 elements: \n";
+	Arraytwo(arr, arrlength, number, arr2, arr2length);
+
+	return 0;
+}
+
