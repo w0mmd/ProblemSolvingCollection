@@ -1,0 +1,41 @@
+using namespace std;
+
+
+string ReadText()
+{
+    string Message;
+
+    cout << "Please enter your text:\n";
+    getline(cin, Message);
+
+    return Message;
+}
+
+string ConvertFirstLetterToSmall (string Text)
+{
+    bool IsFirstChar = true;
+
+    for (short i = 0; i < Text.length(); i++)
+    {
+        if (Text[i] != ' ' && IsFirstChar)
+        {
+           Text[i] = tolower(Text[i]);
+        }
+
+        IsFirstChar = (Text[i] == ' ' ? true : false);
+    }
+    return Text;
+ }
+
+int main()
+{
+    string Text = ReadText();
+
+    cout << "String after conversion:\n";
+   Text =  ConvertFirstLetterToSmall(Text);
+   cout << Text << endl;
+
+    return 0;  
+}
+
+

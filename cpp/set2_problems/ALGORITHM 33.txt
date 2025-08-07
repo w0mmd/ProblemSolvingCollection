@@ -1,0 +1,48 @@
+using namespace std;
+
+
+string ReadString()
+{
+    string Text;
+
+    cout << "Please enter your text?\n";
+    getline(cin, Text);
+
+    return Text;
+}
+
+bool IsCharVowel(char Character)
+{
+    Character = tolower(Character);
+
+    if (Character == 'a' || Character == 'u' || Character == 'i' || Character == 'o' || Character == 'e')
+        return true;
+    else
+        return false;
+}
+
+short CountVowelsInString(string Text)
+{
+    short Counter = 0;
+
+    for (short i = 0; i < Text.length(); i++)
+    {
+        if (IsCharVowel(Text[i]))
+        {
+            Counter++;
+        }
+    }
+
+    return Counter;
+}
+
+int main()
+{
+    string Text = ReadString(); 
+
+    cout << "Number of vowels is: " << CountVowelsInString(Text) << endl;
+
+    return 0;  
+}
+
+

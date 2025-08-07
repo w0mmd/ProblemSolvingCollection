@@ -1,0 +1,46 @@
+using namespace std;
+
+string JoinString(vector<string> &vString, string Delim)
+{
+    string Text = "";
+
+    for (string& n : vString)
+    {
+      
+        Text = Text + n + Delim;
+       
+    }
+    
+    
+       
+    return Text.substr(0, Text.size() - Delim.size());
+}
+
+string JoinString(string Array[], short Length, string Delim)
+{
+    string Text = "";
+
+    for (short i = 0; i < Length; i++)
+    {
+
+        Text = Text + Array[i] + Delim;
+
+    }
+
+    return Text.substr(0, (Text.size() - Delim.size()));
+}
+
+
+int main()
+{
+    vector<string> vString = { "Ali","Maher", "Samer", "Rawan" };
+    string Array[] = { "Ali", "Maher", "Samer", "Rawan" };
+
+    cout << "Vector After Join:\n";
+    cout << JoinString(vString, ",");
+
+    cout << "\n\nArray After Join:\n";
+    cout << JoinString(Array,4, ",,,");
+
+    return 0;  
+}

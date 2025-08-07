@@ -1,0 +1,183 @@
+
+int GenerateRandomNumber(int from, int to)
+{
+    int RandNumber = rand() % (to - from + 1) + from;
+
+    return RandNumber;
+}
+
+void GenerateMatrix(int arri[3][3], short rows, short columns)
+{
+    for (int i = 0; i < rows; i++)
+    {
+        for (int j = 0; j < columns; j++)
+        {
+            arri[i][j] = GenerateRandomNumber(1, 100);
+        }
+    }
+
+}
+
+void PrintMatrix(int arri[3][3], short rows, short columns)
+{
+    for (int i = 0; i <= rows - 1; i++)
+    {
+        for (int j = 0; j <= columns - 1; j++)
+        {
+            cout << setfill('0') << setw(2) << arri[i][j] << "       ";
+        }
+        cout << endl;
+    }
+
+}
+
+int SumOfMatrix(int arri[3][3], short rows, short columns)
+{
+    int sum = 0;
+
+    for (int i = 0; i < rows; i++)
+    {
+        for (int j = 0; j < columns; j++)
+        {
+            sum += arri[i][j];
+        }
+    }
+    return sum;
+}
+
+int SumOfMatrix2(int arri2[3][3], short rows, short columns)
+{
+    int sum = 0;
+
+    for (int i = 0; i < rows; i++)
+    {
+        for (int j = 0; j < columns; j++)
+        {
+            sum += arri2[i][j];
+        }
+    }
+    return sum;
+}
+
+void PrintMatrixSumMatch(int arri[3][3], int arri2[3][3], int rows, int columns)
+{
+    if (SumOfMatrix(arri, 3, 3) != SumOfMatrix2(arri2, 3, 3))
+    {
+        cout << "No, matrices are not equal.\n";
+    }
+    else {
+        cout << "Yes, matrices are equal.\n";
+    }
+
+}
+
+int main()
+{
+    srand((unsigned)time(NULL));
+
+    int arri[3][3], arri2[3][3];
+
+    cout << "Matrix1:\n";
+    GenerateMatrix(arri, 3, 3);
+    PrintMatrix(arri, 3, 3);
+
+    cout << endl;
+
+    cout << "Matrix2:\n";
+    GenerateMatrix(arri2, 3, 3);
+    PrintMatrix(arri2, 3, 3);
+
+    cout << endl;
+
+    PrintMatrixSumMatch(arri, arri2, 3, 3);
+
+    return 0;  
+}
+====================================================
+
+
+int GenerateRandomNumber(int from, int to)
+{
+    int RandNumber = rand() % (to - from + 1) + from;
+
+    return RandNumber;
+}
+
+void GenerateMatrix(int arri[3][3], short rows, short columns)
+{
+    for (int i = 0; i < rows; i++)
+    {
+        for (int j = 0; j < columns; j++)
+        {
+            arri[i][j] = GenerateRandomNumber(1, 5);
+        }
+    }
+
+}
+
+void PrintMatrix(int arri[3][3], short rows, short columns)
+{
+    for (int i = 0; i <= rows - 1; i++)
+    {
+        for (int j = 0; j <= columns - 1; j++)
+        {
+            cout << setfill('0') << setw(2) << arri[i][j] << "       ";
+        }
+        cout << endl;
+    }
+
+}
+
+int SumOfMatrix(int arri[3][3], short rows, short columns)
+{
+    int sum = 0;
+
+    for (int i = 0; i < rows; i++)
+    {
+        for (int j = 0; j < columns; j++)
+        {
+            sum += arri[i][j];
+        }
+    }
+    return sum;
+}
+
+bool AreEqualMatrices(int arri[3][3], int arri2[3][3], int rows, int columns)
+{
+    return (SumOfMatrix(arri, rows, columns) == SumOfMatrix(arri2, rows, columns));
+
+}
+
+int main()
+{
+    srand((unsigned)time(NULL));
+
+    int arri[3][3], arri2[3][3];
+
+    cout << "Matrix1:\n";
+    GenerateMatrix(arri, 3, 3);
+    PrintMatrix(arri, 3, 3);
+
+    cout << endl;
+
+    cout << "Matrix2:\n";
+    GenerateMatrix(arri2, 3, 3);
+    PrintMatrix(arri2, 3, 3);
+
+    cout << endl;
+
+    if (AreEqualMatrices(arri, arri2, 3, 3))
+    {
+        cout << "Yes, matrices are equal.\n";
+    }
+    else {
+        cout << "No, matrices are not equal.\n";
+    }
+       
+
+    return 0;  
+}
+
+
+
+

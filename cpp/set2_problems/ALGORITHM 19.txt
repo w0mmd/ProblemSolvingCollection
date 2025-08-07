@@ -1,0 +1,70 @@
+
+
+void PrintMatrix(int arri[3][3], short rows, short columns)
+{
+    for (int i = 0; i <= rows - 1; i++)
+    {
+        for (int j = 0; j <= columns - 1; j++)
+        {
+            cout << setfill('0') << setw(2) << arri[i][j] << "       ";
+        }
+        cout << endl;
+    }
+
+}
+
+int CheckMaxNumberInMatrix(int arri[3][3], short rows, short columns)
+{
+    short MaxNumber = arri[0][0];
+
+    for (short i = 0; i < rows; i++)
+    {
+        for (short j = 0; j < columns; j++)
+        {
+            if (MaxNumber < arri[i][j])
+            {
+                MaxNumber = arri[i][j];
+            }
+         
+        }
+    }
+
+    return MaxNumber;
+}
+
+int CheckMinNumberInMatrix(int arri[3][3], short rows, short columns)
+{
+    short MinNumber = arri[0][0];
+
+    for (short i = 0; i < rows; i++)
+    {
+        for (short j = 0; j < columns; j++)
+        {
+            if (MinNumber > arri[i][j])
+            {
+                MinNumber = arri[i][j];
+            }
+         
+        }
+    }
+
+    return MinNumber;
+}
+
+int main()
+{
+
+    int arri[3][3] = { {77,5,12},{22,20,3},{5,4,9} };
+
+    cout << "Matrix1:\n";
+    PrintMatrix(arri, 3, 3);
+
+    cout << endl;
+
+    cout << "Minimum number is: " << CheckMinNumberInMatrix(arri, 3, 3) << endl;
+    cout << "Maximum number is: " << CheckMaxNumberInMatrix(arri, 3, 3) << endl;
+
+    return 0;  
+}
+
+

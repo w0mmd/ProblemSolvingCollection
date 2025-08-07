@@ -1,0 +1,72 @@
+string ReadText()
+{
+    string Message;
+
+    cout << "Please enter your character:\n";
+    getline(cin, Message);
+
+    return Message;
+}
+
+string InvertString (string Text)
+{
+    for (short i = 0; i < Text.length(); i++)
+    {
+      Text[i] =  isupper(Text[i]) ?  tolower(Text[i]) : toupper(Text[i]);
+    }
+    return Text;
+ }
+
+int main()
+{
+    string Text = ReadText();
+
+    cout << "Text after inverting:\n";
+    Text = InvertString(Text);
+   cout << Text << endl;
+
+
+    return 0;  
+}
+==========================================
+
+
+string ReadText()
+{
+    string Message;
+
+    cout << "Please enter your character:\n";
+    getline(cin, Message);
+
+    return Message;
+}
+
+char InvertCharacter(char Text)
+{
+    return isupper(Text) ? tolower(Text) : toupper(Text);
+}
+
+
+string InvertString (string Text)
+{
+    for (short i = 0; i < Text.length(); i++)
+    {
+        Text[i] = InvertCharacter(Text[i]);
+     
+    }
+    return Text;
+ }
+
+int main()
+{
+    string Text = ReadText();
+
+    cout << "Text after inverting:\n";
+    Text = InvertString(Text);
+   cout << Text << endl;
+
+
+    return 0;  
+}
+
+
