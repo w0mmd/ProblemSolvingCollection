@@ -1,0 +1,66 @@
+
+int GenerateRandomNumber(int from, int to)
+{
+    int RandNumber = rand() % (to - from + 1) + from;
+
+    return RandNumber;
+}
+
+void GenerateMatrix(int arri[3][3], short rows, short columns)
+{
+    for (int i = 0; i < rows; i++)
+    {
+        for (int j = 0; j < columns; j++)
+        {
+            arri[i][j] = GenerateRandomNumber(1, 10);
+        }
+    }
+
+}
+
+void PrintMatrix(int arri[3][3], short rows, short columns)
+{
+    for (int i = 0; i < rows; i++)
+    {
+        for (int j = 0; j < columns; j++)
+        {
+            cout << setfill('0') << setw(2) << arri[i][j] << "       ";
+        }
+        cout << endl;
+    }
+
+}
+
+void MultiplyOfTwoMatrix(int arri3[3][3], int arri2[3][3], int arri[3][3], short rows, short columns)
+{
+    for (short i = 0; i < rows; i++)
+    {
+        for (short j = 0; j < columns; j++)
+        {
+            arri3[i][j] = arri[i][j] * arri2[i][j];
+        }
+    }
+}
+
+
+int main()
+{
+    srand((unsigned)time(NULL));
+
+    int arri[3][3], arri2[3][3], arri3[3][3];
+
+    cout << "Matrix1:\n";
+    GenerateMatrix(arri, 3, 3);
+    PrintMatrix(arri, 3, 3);
+
+    cout << "Matrix2:\n";
+    GenerateMatrix(arri2, 3, 3);
+    PrintMatrix(arri2, 3, 3);
+
+    cout << "Matrix3:\n";
+    MultiplyOfTwoMatrix(arri3, arri2, arri, 3, 3);
+    PrintMatrix(arri3, 3, 3);
+
+    return 0;  
+}
+

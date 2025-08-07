@@ -1,0 +1,46 @@
+
+string ReadString()
+{
+    string Text;
+
+    cout << "Please enter your text?\n";
+    getline(cin, Text);
+
+    return Text;
+}
+
+bool IsCharVowel(char Character)
+{
+    Character = tolower(Character);
+
+    if (Character == 'a' || Character == 'u' || Character == 'i' || Character == 'o' || Character == 'e')
+        return true;
+    else
+        return false;
+}
+
+void PrintVowelsInString(string Text)
+{
+
+    for (short i = 0; i < Text.length(); i++)
+    {
+        if (IsCharVowel(Text[i]))
+        {
+            cout << Text[i] << "  ";
+        }
+    }
+    cout << endl;
+
+}
+
+int main()
+{
+    string Text = ReadString(); 
+
+    cout << "Vowels in string are: ";
+    PrintVowelsInString(Text);
+
+    return 0;  
+}
+
+

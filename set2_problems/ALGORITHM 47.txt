@@ -1,0 +1,209 @@
+using namespace std;
+
+struct sClientData {
+
+    string AccountNumber;
+    string PinCode;
+    string Name;
+    string Phone;
+    string AccountBalance;
+
+};
+
+sClientData ReadClientData()
+{
+    sClientData ClientData;
+
+    cout << "Please enter account number:\n";
+    getline(cin, ClientData.AccountNumber);
+
+    cout << "\nPlease enter pin code:\n";
+    getline(cin, ClientData.PinCode);
+
+    cout << "\nPlease enter your name:\n";
+    getline(cin, ClientData.Name);
+
+    cout << "\nPlease enter phone:\n";
+    getline(cin, ClientData.Phone);
+
+    cout << "\nPlease enter account balance:\n";
+    getline(cin, ClientData.AccountBalance);
+
+
+    return ClientData;
+}
+
+vector<sClientData> ReadMultipleClients()
+{
+    vector<sClientData> vDataClient;
+    char More = 'y';
+    short Counter = 1;
+
+    while (tolower(More) == 'y')
+    {
+        vDataClient.push_back(ReadClientData());
+        Counter++;
+        printf("Data is added successfully. Do you want to add client number %d? if yes [Y] if no [N]\n", Counter);
+        cin >> More;
+        cin.ignore();
+    }
+
+    return vDataClient;
+
+}
+
+string ConvertRecordToStringLine(sClientData& Client, string Delim)
+{
+    return (Client.AccountNumber + Delim
+        + Client.PinCode + Delim
+        + Client.Name + Delim
+        + Client.Phone + Delim
+        + Client.AccountBalance);
+}
+
+vector<string> ConvertClientsToStringLines(vector<sClientData>& Client, string Delim)
+{
+    vector<string> vLine;
+
+    for (sClientData& s : Client)
+    {
+        vLine.push_back(ConvertRecordToStringLine(s, Delim));
+    }
+
+    return vLine;
+}
+
+void SaveVectorToFile(string FileName, vector<string>&vString)
+{
+
+    fstream MyFile;
+
+    MyFile.open(FileName, ios::out | ios::app);
+
+    if (MyFile.is_open())
+    {
+        for (string& s : vString)
+        {
+            MyFile << s << endl;
+        }
+
+        MyFile.close();
+    }
+
+
+}
+
+int main()
+{
+    vector<sClientData> ClientData = ReadMultipleClients();
+    vector<string> ClientDataInLine = ConvertClientsToStringLines(ClientData, "#//#");
+
+    SaveVectorToFile("MyFile.txt", ClientDataInLine);
+    
+    return 0;  
+}
+============================================================
+
+
+using namespace std;
+
+const string ClientFileName = "ClientData.txt";
+
+struct sClient {
+
+    string AccountNumber;
+    string PinCode;
+    string Name;
+    string Phone;
+    double AccountBalance;
+
+};
+
+sClient ReadClientData()
+{
+    sClient Client;
+
+        sClient Client;
+
+        cout << "Enter Account Number? ";
+        getline(cin >> ws, Client.AccountNumber);
+
+        cout << "Enter PinCode? ";
+        getline(cin, Client.PinCode);
+
+        cout << "Enter Name? ";
+        getline(cin, Client.Name);
+
+        cout << "Enter Phone? ";
+        getline(cin, Client.Phone);
+
+        cout << "Enter AccountBalance? ";
+        cin >> Client.AccountBalance;
+
+        return Client;
+    }
+
+string ConvertRecordToLine(sClient Client, string Seperator = "#//#")
+{
+    string stClientRecord = "";
+
+    stClientRecord += Client.AccountNumber + Seperator;
+    stClientRecord += Client.PinCode + Seperator;
+    stClientRecord += Client.Name + Seperator;
+    stClientRecord += Client.Phone + Seperator;
+    stClientRecord += to_string(Client.AccountBalance);
+
+    return stClientRecord;
+}
+
+void AddDataLineToFile(string FileName, string stDataLine)
+{
+    fstream MyFile;
+
+    MyFile.open(FileName, ios::out | ios::app);
+
+    if (MyFile.is_open())
+    {
+        MyFile << stDataLine << endl;
+
+        MyFile.close();
+    }
+}
+
+void AddNewClient()
+{
+    sClient Client;
+
+    Client = ReadClientData();
+    AddDataLineToFile(ClientFileName, ConvertRecordToLine(Client));
+}
+
+void AddClients()
+    {
+        char AddMore = 'Y';
+        do
+        {
+            system("cls");
+
+            cout << "Adding New Client:\n\n";
+            AddNewClient();
+
+            cout << "\nClient Added Successfully, do you want to add more clients [Y], [N]?\n";
+                
+            cin >> AddMore;
+
+        } while (toupper(AddMore) == 'Y');
+ }
+
+
+int main()
+{
+    
+    AddClients();
+
+    return 0;  
+}
+
+
+
+

@@ -1,0 +1,173 @@
+
+int GenerateRandomNumber(int from, int to)
+{
+    int RandNumber = rand() % (to - from + 1) + from;
+
+    return RandNumber;
+}
+
+void GenerateMatrix(int arri[3][3], short rows, short columns)
+{
+    for (int i = 0; i < rows; i++)
+    {
+        for (int j = 0; j < columns; j++)
+        {
+            arri[i][j] = GenerateRandomNumber(1, 10);
+        }
+    }
+
+}
+
+void PrintMatrix(int arri[3][3], short rows, short columns)
+{
+    for (int i = 0; i <= rows - 1; i++)
+    {
+        for (int j = 0; j <= columns - 1; j++)
+        {
+            cout << setfill('0') << setw(2) << arri[i][j] << "       ";
+        }
+        cout << endl;
+    }
+
+}
+
+void PrintMiddleRow(int arri[3][3], short rows, short columns)
+{
+    for (int i = 1; i < rows; i++)
+    {
+        for (int j = 0; j < columns; j++)
+        {
+            cout << setfill('0') << setw(2) << arri[i][j] << "       ";
+        }
+        cout << endl;
+    }
+
+}
+
+void PrintMiddleColumn(int arri[3][3], short rows, short columns)
+{
+    for (int i = 0; i < rows; i++)
+    {
+        for (int j = 1; j < columns; j++)
+        {
+            cout << setfill('0') << setw(2) << arri[i][j] << "       ";
+        }
+        cout << endl;
+    }
+
+}
+
+
+int main()
+{
+    srand((unsigned)time(NULL));
+
+    int arri[3][3];
+
+    cout << "Matrix1:\n";
+    GenerateMatrix(arri, 3, 3);
+    PrintMatrix(arri, 3, 3);
+
+    cout << endl;
+
+    cout << "The middle row of the matrix is:\n";
+    PrintMiddleRow(arri, 2, 3);
+
+    cout << endl;
+
+    cout << "The middle column of the matrix is:\n";
+    PrintMiddleColumn(arri, 3, 2);
+
+    return 0;  
+}
+
+==================================================
+
+
+
+int GenerateRandomNumber(int from, int to)
+{
+    int RandNumber = rand() % (to - from + 1) + from;
+
+    return RandNumber;
+}
+
+void GenerateMatrix(int arri[3][3], short rows, short columns)
+{
+    for (int i = 0; i < rows; i++)
+    {
+        for (int j = 0; j < columns; j++)
+        {
+            arri[i][j] = GenerateRandomNumber(1, 10);
+        }
+    }
+
+}
+
+void PrintMatrix(int arri[3][3], short rows, short columns)
+{
+    for (int i = 0; i <= rows - 1; i++)
+    {
+        for (int j = 0; j <= columns - 1; j++)
+        {
+            cout << setfill('0') << setw(2) << arri[i][j] << "       ";
+        }
+        cout << endl;
+    }
+
+}
+
+void PrintMiddleRow(int arri[3][3], short rows, short columns)
+{
+    short MiddleRow = rows / 2;
+
+        for (int i = 0; i < columns; i++)
+        {
+            printf("  %0*d     ", 2, arri[MiddleRow][i]);
+        }
+        cout << endl;
+    
+
+}
+
+void PrintMiddleColumn(int arri[3][3], short rows, short columns)
+{
+   
+    short MiddleColumns = columns / 2;
+
+        for (int i = 0; i < columns; i++)
+        {
+            printf("  %0*d     ", 2, arri[i][MiddleColumns]);
+        }
+        cout << endl;
+   
+
+}
+
+
+int main()
+{
+    srand((unsigned)time(NULL));
+
+    int arri[3][3];
+
+    cout << "Matrix1:\n";
+    GenerateMatrix(arri, 3, 3);
+    PrintMatrix(arri, 3, 3);
+
+    cout << endl;
+
+    cout << "The middle row of the matrix is:\n";
+    PrintMiddleRow(arri, 3, 3);
+
+    cout << endl;
+
+    cout << "The middle column of the matrix is:\n";
+    PrintMiddleColumn(arri, 3, 3);
+
+    return 0;  
+}
+
+
+
+

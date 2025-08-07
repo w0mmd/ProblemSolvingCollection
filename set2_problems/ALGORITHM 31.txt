@@ -1,0 +1,60 @@
+using namespace std;
+
+string ReadText()
+{
+    string Message;
+
+    cout << "Please enter your character:\n";
+    getline(cin, Message);
+
+    return Message;
+}
+
+char ReadChar()
+{
+    char Character;
+
+    cout << "Please enter your character?\n";
+    cin >> Character;
+
+    return Character;
+}
+
+short FindCharInString(string Text, char Character, bool MatchCase = true)
+{
+    short Counter = 0;
+
+    for (short i = 0; i < Text.length(); i++)
+    {
+
+        if (MatchCase)
+        {
+            if (Text[i] == Character)
+                Counter++;
+        }
+        else {
+            if (tolower(Text[i]) == tolower(Character))
+                Counter++;
+
+        }
+
+    }
+
+    return Counter;
+}
+
+int main()
+{
+    string Text = ReadText();
+    char Character = ReadChar();   
+    char ConvertedCharacter = islower(Character) ? toupper(Character) : tolower(Character);
+
+    cout << "Character " << Character << " count: " <<
+        FindCharInString(Text, Character) << endl;
+
+    cout << "Character " << Character << " and " << ConvertedCharacter  <<
+        " count: " << FindCharInString(Text, Character, false) << endl;
+
+    return 0;  
+}
+

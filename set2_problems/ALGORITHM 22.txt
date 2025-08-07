@@ -1,0 +1,61 @@
+
+
+void PrintFibonacciWithRecursion(int Prev1, int Prev2, int Next, int Number, int Counter)
+{
+    
+    if (Counter <= Number)
+    {
+        cout << Prev1 << "  ";
+        Next = Prev1 + Prev2;
+        Prev1 = Prev2;
+        Prev2 = Next;
+        Counter++;
+        PrintFibonacciWithRecursion(Prev1, Prev2, Next, Number, Counter);
+    }
+}
+
+
+int main()
+{
+
+
+    cout << "Fibonacci series:\n";
+    PrintFibonacciWithRecursion(0, 1, 0, 10, 0);
+    
+    return 0;  
+}
+
+
+==========================================================
+
+
+
+
+void PrintFibonacciWithRecursion(int Counter, int Prev1 = 0, int Prev2 = 1)
+{
+    
+    if (Counter == 0)
+        return;
+
+        cout << Prev1 << "  ";
+   
+        PrintFibonacciWithRecursion(Counter - 1, Prev2, Prev1 + Prev2);
+   
+}
+
+
+int main()
+{
+
+
+    cout << "Fibonacci series:\n";
+    PrintFibonacciWithRecursion(10);
+    
+    return 0;  
+}
+
+
+
+
+
+
