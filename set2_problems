@@ -1,0 +1,78 @@
+
+int GenerateRandomNumber(int from, int to)
+{
+    int RandNumber = rand() % (to - from + 1) + from;
+
+    return RandNumber;
+}
+
+void GenerateMatrixTable()
+{
+    cout << "The following is a 3x3 matrix:\n";
+    for (int i = 1; i <= 3; i++)
+    {
+        for (int j = 1; j <= 3; j++)
+        {
+            cout << setw(5) <<GenerateRandomNumber(1, 100) << setw(5);
+        }
+        cout << endl;
+    }
+}
+
+int main()
+{
+    srand((unsigned)time(NULL));
+
+    GenerateMatrixTable();
+
+    return 0;  
+}
+
+
+===============================================
+int GenerateRandomNumber(int from, int to)
+{
+    int RandNumber = rand() % (to - from + 1) + from;
+
+    return RandNumber;
+}
+
+void GenerateMatrixTable(int arri[3][3], short rows, short columns)
+{
+    for (int i = 0; i < columns; i++)
+    {
+        for (int j = 0; j < rows; j++)
+        {
+            arri[i][j] = GenerateRandomNumber(1, 100);
+        }
+    }
+}
+
+void PrintMatrixTable(int arri[3][3], short rows, short columns)
+{
+    for (int i = 0; i < rows; i++)
+    {
+        for (int j = 0; j < columns; j++)
+        {
+            cout << setw(3) << arri[i][j] << "         ";
+        }
+        cout << endl;
+    }
+}
+
+int main()
+{
+    srand((unsigned)time(NULL));
+
+    int arri[3][3];
+
+    GenerateMatrixTable(arri, 3, 3);
+    cout << "The following is a 3x3 matrix:\n";
+    PrintMatrixTable(arri, 3, 3);
+
+    return 0;  
+}
+
+
+
+
