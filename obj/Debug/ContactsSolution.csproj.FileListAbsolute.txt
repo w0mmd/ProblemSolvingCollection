@@ -1,7 +1,0 @@
-C:\Users\user\Desktop\ContactsSolution\ContactsSolution\bin\Debug\ContactsSolution.exe.config
-C:\Users\user\Desktop\ContactsSolution\ContactsSolution\bin\Debug\ContactsSolution.exe
-C:\Users\user\Desktop\ContactsSolution\ContactsSolution\bin\Debug\ContactsSolution.pdb
-C:\Users\user\Desktop\ContactsSolution\ContactsSolution\obj\Debug\ContactsSolution.csproj.AssemblyReference.cache
-C:\Users\user\Desktop\ContactsSolution\ContactsSolution\obj\Debug\ContactsSolution.csproj.CoreCompileInputs.cache
-C:\Users\user\Desktop\ContactsSolution\ContactsSolution\obj\Debug\ContactsSolution.exe
-C:\Users\user\Desktop\ContactsSolution\ContactsSolution\obj\Debug\ContactsSolution.pdb
