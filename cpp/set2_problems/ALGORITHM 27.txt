@@ -1,0 +1,87 @@
+using namespace std;
+
+
+char ReadText()
+{
+    char Message;
+
+    cout << "Please enter your character:\n";
+    cin >> Message;
+
+    return Message;
+}
+
+char InvertCharacter (char Text)
+{
+    if (islower(Text))
+    {
+        Text = toupper(Text);
+    }
+    else if (isupper(Text)){
+
+       Text = tolower(Text);
+
+    }
+       
+   
+    return Text;
+ }
+
+int main()
+{
+    char Text = ReadText();
+
+    cout << "Character after inverting:\n";
+   Text =  InvertCharacter(Text);
+   cout << Text << endl;
+
+
+    return 0;  
+}
+
+
+===============================================
+
+
+using namespace std;
+
+
+char ReadText()
+{
+    char Message;
+
+    cout << "Please enter your character:\n";
+    cin >> Message;
+
+    return Message;
+}
+
+char InvertCharacter (char Text)
+{
+    return isupper(Text) ? tolower(Text) : toupper(Text);
+ }
+
+int main()
+{
+    char Text = ReadText();
+
+    cout << "Character after inverting:\n";
+   Text =  InvertCharacter(Text);
+   cout << Text << endl;
+
+
+    return 0;  
+}
+
+
+
+
+
+
+
+
+
+
+
+
+

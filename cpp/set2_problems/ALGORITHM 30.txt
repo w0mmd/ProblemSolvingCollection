@@ -1,0 +1,46 @@
+
+string ReadText()
+{
+    string Message;
+
+    cout << "Please enter your character:\n";
+    getline(cin, Message);
+
+    return Message;
+}
+
+char ReadChar()
+{
+    char Character;
+
+    cout << "Please enter your character?\n";
+    cin >> Character;
+
+    return Character;
+}
+
+short FindCharInString(string Text, char Character)
+{
+    short Counter = 0;
+
+    for (short i = 0; i < Text.length(); i++)
+    {
+
+        if (Text.at(i) == Character)
+            Counter++;
+
+    }
+
+    return Counter;
+}
+
+int main()
+{
+    string Text = ReadText();
+    char Character = ReadChar();   
+
+    cout << "Character " << Character << " count: " << FindCharInString(Text, Character) << endl;
+
+    return 0;  
+}
+=========================================

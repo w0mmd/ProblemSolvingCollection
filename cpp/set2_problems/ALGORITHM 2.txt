@@ -1,0 +1,135 @@
+
+int GenerateRandomNumber(int from, int to)
+{
+    int RandNumber = rand() % (to - from + 1) + from;
+
+    return RandNumber;
+}
+
+void GenerateMatrixTable(int arri[3][3], short rows, short columns)
+{
+    for (int i = 0; i < columns; i++)
+    {
+        for (int j = 0; j < rows; j++)
+        {
+            arri[i][j] = GenerateRandomNumber(1, 100);
+        }
+    }
+}
+
+void PrintMatrixTable(int arri[3][3], short rows, short columns)
+{
+    for (int i = 0; i < rows; i++)
+    {
+        for (int j = 0; j < columns; j++)
+        {
+            cout << setw(3) << arri[i][j] << "         ";
+        }
+        cout << endl;
+    }
+}
+
+void SumOfRowsInMatrix(int arri[3][3], short rows, short columns)
+{
+
+    for (int i = 0; i < rows; i++)
+    {
+        int sum = 0;
+        for (int j = 0; j < rows; j++)
+        {
+            sum += arri[i][j];
+        }
+        printf("Row %d Sum = %d.", i + 1, sum);
+        cout << endl;
+    }
+}
+
+int main()
+{
+    srand((unsigned)time(NULL));
+
+    int arri[3][3];
+
+    GenerateMatrixTable(arri, 3, 3);
+
+    cout << "The following is a 3x3 matrix:\n";
+    PrintMatrixTable(arri, 3, 3);
+
+    cout << "\nThe following are the sum of each row in the matrix:\n";
+    SumOfRowsInMatrix(arri, 3, 3);
+    return 0;  
+}
+
+
+==================================================
+
+
+int GenerateRandomNumber(int from, int to)
+{
+    int RandNumber = rand() % (to - from + 1) + from;
+
+    return RandNumber;
+}
+
+void GenerateMatrixTable(int arri[3][3], short rows, short columns)
+{
+    for (int i = 0; i < columns; i++)
+    {
+        for (int j = 0; j < rows; j++)
+        {
+            arri[i][j] = GenerateRandomNumber(1, 100);
+        }
+    }
+}
+
+void PrintMatrixTable(int arri[3][3], short rows, short columns)
+{
+    for (int i = 0; i < rows; i++)
+    {
+        for (int j = 0; j < columns; j++)
+        {
+            cout << setw(3) << arri[i][j] << "         ";
+        }
+        cout << endl;
+    }
+}
+
+int SumOfRowsInMatrix(int arri[3][3], short RowNumber, short columns)
+{
+    int sum = 0;
+    for (int j = 0; j < columns; j++)
+    {
+        sum += arri[RowNumber][j];
+    }
+
+    return sum;
+}
+
+void PrintSumOfRowsInMatrix(int arri[3][3], short rows, short columns)
+{
+    for (int i = 0; i < rows; i++)
+    {
+        cout << "Row " << i + 1 << " Sum = " << SumOfRowsInMatrix(arri, i, columns) << endl;
+    }
+    
+}
+
+int main()
+{
+    srand((unsigned)time(NULL));
+
+    int arri[3][3];
+
+    GenerateMatrixTable(arri, 3, 3);
+
+    cout << "The following is a 3x3 matrix:\n";
+    PrintMatrixTable(arri, 3, 3);
+
+    cout << "\nThe following are the sum of each row in the matrix:\n";
+    PrintSumOfRowsInMatrix(arri, 3, 3);
+    return 0;  
+}
+
+
+
+

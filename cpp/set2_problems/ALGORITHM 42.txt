@@ -1,0 +1,30 @@
+using namespace std;
+
+string ReplaceString(string S1, string ToFind, string ToReplace)
+{
+    short pos = 0;
+
+    while ((pos = S1.find(ToFind)) != std::string::npos)
+    {
+       S1 =  S1.replace(pos, ToFind.length(), ToReplace);
+       pos = S1.find(ToFind);
+    }
+
+    return S1;
+}
+
+
+
+int main()
+{
+    string S1 = "Welcome to Jordan, Jordan is a nice country.";
+    cout << S1 << endl;
+
+    cout << "\nReplaced string is:\n\n";
+    cout << ReplaceString(S1, "Jordan", "USA") << endl;
+    
+
+    return 0;  
+}
+
+

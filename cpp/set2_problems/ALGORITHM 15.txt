@@ -1,0 +1,77 @@
+
+void PrintMatrix(int arri[3][3], short rows, short columns)
+{
+    for (int i = 0; i <= rows - 1; i++)
+    {
+        for (int j = 0; j <= columns - 1; j++)
+        {
+            cout << setfill('0') << setw(2) << arri[i][j] << "       ";
+        }
+        cout << endl;
+    }
+
+}
+
+int ReadNumberToCount()
+{
+    short Number = 0;
+
+    while (true)
+    {
+        cout << "Please enter a number to count in matrix:\n";
+        cin >> Number;
+
+        if (cin.fail())
+        {
+            cin.clear();
+            cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+
+            cout << "Please enter just numbers!\n\n";
+        }
+        else if (Number < 0)
+        {
+            cout << "Please enter a positive number!\n\n";
+        }
+        else {
+            break;
+        }
+
+
+
+    }
+    return Number;
+}
+
+int FindNumberCount(int arri[3][3], short rows, short columns, short NumberToCount)
+{
+    short counter = 0;
+
+    for (short i = 0; i < rows; i++)
+    {
+        for (short j = 0; j < columns; j++)
+        {
+            if (arri[i][j] == NumberToCount)
+            {
+                counter++;
+            }
+        }
+    }
+    return counter;
+}
+
+int main()
+{
+
+    int arri[3][3] = { {9,9,0},{4,9,10},{5,5,9} };
+
+    cout << "Matrix1:\n";
+    PrintMatrix(arri, 3, 3);
+    short NumberToCount = ReadNumberToCount();
+    short Count = FindNumberCount(arri, 3, 3, NumberToCount);
+
+    printf("Number %d count in matrix is: %d\n", NumberToCount, Count);
+    cout << endl;
+
+    return 0;  
+}
+

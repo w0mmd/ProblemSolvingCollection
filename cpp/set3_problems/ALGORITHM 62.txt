@@ -1,0 +1,125 @@
+
+using namespace std;
+
+struct stDate{
+    short Year;
+    short Month;
+    short Day;
+};
+
+bool isLeapYear(short Year)
+{ 
+    return (Year % 4 == 0 && Year % 100 != 0) || (Year % 400 == 0);
+}
+
+short NumberOfDaysInAMonth(short Month, short Year) 
+{ 
+    if (Month < 1 || Month>12) return  0; 
+
+    int days[12] = { 31,28,31,30,31,30,31,31,30,31,30,31 };
+    
+    return (Month == 2) ? (isLeapYear(Year) ? 29 : 28) : days[Month - 1]; 
+}
+
+//First Solution:
+bool IsDateValid1(stDate Date)
+{
+    if (Date.Month <= 0 || Date.Month > 12)
+        return false;
+
+    short MonthDays = NumberOfDaysInAMonth(Date.Month, Date.Year);
+
+    if (Date.Day <= 0 || Date.Day > MonthDays)
+        return false;
+
+    return true;
+}
+
+//Second Solution:
+bool IsDateValid2(stDate Date)
+{
+    if (Date.Day < 1 || Date.Day > 31)
+        return false;
+
+    if (Date.Month < 1 || Date.Month > 12)
+        return false;
+
+    if (Date.Month == 2)
+    {
+        if (isLeapYear(Date.Year))
+        {
+            if (Date.Day > 29)
+                return false;
+        }
+        else {
+            if (Date.Day > 28)
+                return false;
+        }
+    }
+
+    short MonthDays = NumberOfDaysInAMonth(Date.Month, Date.Year);
+
+    if (Date.Day > MonthDays)
+        return false;
+
+    return true;
+}
+
+short ReadDay()
+{
+    short Day = 0;
+
+    cout << "Enter a Day?\n";
+    cin >> Day;
+
+    return Day;
+}
+
+short ReadMonth()
+{
+    short Month = 0;
+
+    cout << "Enter a month?\n";
+    cin >> Month;
+
+    return Month;
+}
+
+short ReadYear()
+{
+    short Year = 0;
+
+    cout << "Enter a year?\n";
+    cin >> Year;
+
+    return Year;
+
+}
+
+stDate ReadFullDate()
+{
+    stDate Date;
+
+    Date.Year = ReadYear();
+    Date.Month = ReadMonth();
+    Date.Day = ReadDay();
+
+    return Date;
+}
+
+int main() 
+{
+    stDate Date = ReadFullDate();
+
+    if (IsDateValid1(Date))
+    {
+        cout << "Yes, date is valid.\n";
+    }
+    else {
+        cout << "No, date is not valid.\n";
+    }
+
+    system("pause>0");
+    return 0;
+}
+

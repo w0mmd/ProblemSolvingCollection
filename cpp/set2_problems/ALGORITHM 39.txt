@@ -1,0 +1,120 @@
+using namespace std;
+
+
+vector<string> ReadString()
+{
+    vector<string> vString;
+    string Line;
+    char YesNo = 'y';
+
+
+    do {
+
+         cout << "Please enter your text to store it in vector?\n";
+    
+         getline(cin, Line);
+         vString.push_back(Line);
+
+         cout << "Do you want to add more element in vector?[Y] if yes [N] if no.\n";
+         cin >> YesNo;
+         
+         cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+
+
+    } while (toupper(YesNo) == 'Y');
+
+    return vString;
+}
+
+string JoinString(vector<string> &vString, string Delim)
+{
+    string Text;
+    for (short i = 0; i < vString.size(); i++)
+    {
+        Text += vString[i];
+
+        if(i != vString.size() - 1 )
+        Text += Delim;
+       
+    }
+    
+    
+       
+    return Text;
+}
+
+
+
+
+int main()
+{
+    vector<string> vString = ReadString();
+
+    cout << "Vector After Join:\n";
+    cout << JoinString(vString, ",");
+
+    return 0;  
+}
+
+
+===========================================================
+
+using namespace std;
+
+
+vector<string> ReadString()
+{
+    vector<string> vString;
+    string Line;
+    char YesNo = 'y';
+
+
+    do {
+
+         cout << "Please enter your text to store it in vector?\n";
+    
+         getline(cin, Line);
+         vString.push_back(Line);
+
+         cout << "Do you want to add more element in vector?[Y] if yes [N] if no.\n";
+         cin >> YesNo;
+         
+         cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+
+
+    } while (toupper(YesNo) == 'Y');
+
+    return vString;
+}
+
+string JoinString(vector<string> &vString, string Delim)
+{
+    string Text = "";
+
+    for (string& n : vString)
+    {
+      
+        Text = Text + n + Delim;
+       
+    }
+    
+    
+       
+    return Text.substr(0, Text.size() - Delim.size());
+}
+
+
+
+
+int main()
+{
+    vector<string> vString = ReadString();
+
+    cout << "Vector After Join:\n";
+    cout << JoinString(vString, ",");
+
+    return 0;  
+}
+
+
+

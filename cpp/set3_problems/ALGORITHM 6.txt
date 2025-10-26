@@ -1,0 +1,84 @@
+
+using namespace std;
+
+short ReadYear()
+{
+    short Year = 0;
+
+    cout << "Enter the year that you want to chack?\n";
+    cin >> Year;
+
+    return Year;
+
+}
+
+short ReadMonth()
+{
+    short Month = 0;
+
+    cout << "Enter the month that you want to chack?\n";
+    cin >> Month;
+
+    return Month;
+
+}
+
+bool IsLeapYear(short Year)
+{
+
+   return (Year % 400 == 0) || ((Year % 4 == 0) && (Year % 100 != 0));
+      
+}
+
+short NumberOfDaysInMonth(short Year, short Month)
+{
+
+    if (Month < 1 || Month > 12)
+    {
+        return 0;
+    }
+    
+    int NumberOfDays[12] = { 31,28,31,30,31,30,31,31,30,31,30,31 };
+
+    return (Month == 2) ? (IsLeapYear(Year) ? 29 : 28) : NumberOfDays[Month - 1];
+}
+
+short NumberOfHoursInMonth(short Year, short Month)
+{
+    return NumberOfDaysInMonth(Year, Month) * 24;
+}
+
+int NumberOfMinutesInMonth(short Year, short Month)
+{
+    return NumberOfHoursInMonth(Year, Month) * 60;
+}
+
+int NumberOfSecondsInMonth(short Year, short Month)
+{
+    return NumberOfMinutesInMonth(Year, Month) * 60;
+}
+
+int main() 
+{
+    short Year = ReadYear();
+    short Month = ReadMonth();
+
+    cout << "\nNumber of days in Month (" << Month << ") is "
+        << NumberOfDaysInMonth(Year, Month) << endl;
+
+    cout << "\nNumber of hours in Month (" << Month << ") is "
+        << NumberOfHoursInMonth(Year, Month) << endl;
+
+    cout << "\nNumber of minutes in Month (" << Month << ") is "
+        << NumberOfMinutesInMonth(Year, Month) << endl;
+
+    cout << "\nNumber of seconds in Month (" << Month << ") is "
+        << NumberOfSecondsInMonth(Year, Month) << endl;
+
+   
+
+    system("pause>0");
+
+    return 0;
+}
+

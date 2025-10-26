@@ -1,0 +1,54 @@
+#include <iostream>
+#include <cmath>
+#include <string>
+#include <algorithm>
+#include <cstdlib>
+using namespace std;
+
+enum enNumbersAndLetters {
+	SmallLetter = 1, CapitalLetter = 2, SpecialCharacter = 3, Digit = 4
+};
+
+int RandNumber(int from, int to)
+{
+	int RandNumber = rand() % (to - from + 1) + from;
+
+	return RandNumber;
+}
+
+char CheckCharType(enNumbersAndLetters CharType)
+{
+	switch (CharType)
+	{
+	case enNumbersAndLetters::SmallLetter:
+		return char(RandNumber(97, 122));
+		break;
+	case enNumbersAndLetters::CapitalLetter:
+		return char(RandNumber(65, 90));
+		break;
+	case enNumbersAndLetters::SpecialCharacter:
+		return char(RandNumber(33, 47));
+		break;
+	case enNumbersAndLetters::Digit:
+		return char(RandNumber(48, 57));
+		break;
+	}
+}
+
+int main()
+{  
+	srand((unsigned)time(NULL));
+
+	cout << CheckCharType(enNumbersAndLetters::SmallLetter) << endl;
+	cout << CheckCharType(enNumbersAndLetters::CapitalLetter) << endl;
+	cout << CheckCharType(enNumbersAndLetters::SpecialCharacter) << endl;
+	cout << CheckCharType(enNumbersAndLetters::Digit) << endl;
+
+	return 0;
+}
+
+
+
+
+
+

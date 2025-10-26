@@ -1,0 +1,57 @@
+#include <iostream>
+#include <cmath>
+#include <string>
+#include <algorithm>
+using namespace std;
+
+enum enprimeornot {
+	prime=1, notprime=2
+};
+
+int readnumber(string message)
+{
+	int number = 0;
+
+	do {
+		cout << message << endl;
+		cin >> number;
+	} while (number <= 0);
+	return number;
+}
+
+enprimeornot checkprimeornot(int number)
+{
+	int m = round(number / 2);
+
+	if (number <= 1)
+		return enprimeornot::notprime;
+	for (int i = 2; i <= m; i++)
+	{
+		if (number % i == 0)
+			return enprimeornot::notprime;
+
+	}
+	return enprimeornot::prime;
+
+}
+
+void printnumbers(int number)
+{
+	for (int i = 2; i <= number; i++)
+	{
+		if (checkprimeornot(i) == enprimeornot::prime)
+		{
+			cout << i << endl;
+		}
+	}
+}
+
+
+int main()
+{  
+	int number = readnumber("Please enter your number:");
+	printnumbers(number);
+	return 0;
+}
+
+

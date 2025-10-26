@@ -1,0 +1,80 @@
+
+
+string ReadText()
+{
+    string Message;
+
+    cout << "Please enter your text:\n";
+    getline(cin, Message);
+
+    return Message;
+}
+
+void PrintFirstLetterOfWord(const string& Text)
+{
+    if (!Text.empty())
+    {
+        cout << Text.front() << endl;
+    }
+
+    for (short i = 0; i < Text.size(); i++)
+    {
+        if (Text.at(i) == ' ' && (i + 1) < Text.size())
+        {
+            cout << Text.at(i + 1) << endl;
+        }
+    }
+
+    
+}
+
+
+int main()
+{
+    string Text = ReadText();
+    PrintFirstLetterOfWord(Text);
+    return 0;  
+}
+
+=====================================================
+
+
+
+using namespace std;
+
+
+string ReadText()
+{
+    string Message;
+
+    cout << "Please enter your text:\n";
+    getline(cin, Message);
+
+    return Message;
+}
+
+void PrintFirstLetterOfWord(string Text)
+{
+    bool IsFirstChar = true;
+
+    for (short i = 0; i < Text.length(); i++)
+    {
+        if (Text[i] != ' ' && IsFirstChar)
+        {
+            cout << Text[i] << endl;
+        }
+
+        IsFirstChar = (Text[i] == ' ' ? true : false);
+    }
+
+    
+}
+
+int main()
+{
+    PrintFirstLetterOfWord(ReadText());
+    return 0;  
+}
+
+
+
