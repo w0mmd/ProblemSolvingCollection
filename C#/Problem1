@@ -1,0 +1,71 @@
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Linq;
+using System.Runtime.InteropServices;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ConsoleApp3
+{
+    internal class Program
+    {
+
+        static void Main(string[] args)
+        {
+            YoutubeChannel youtubeChannel1 = new YoutubeChannel() {ChannelName = "Mr beast" };
+            YoutubeChannel youtubeChannel2 = new YoutubeChannel() {ChannelName = "Elzero"};
+
+            Subscriber subscriber = new Subscriber();
+            Subscriber subscriber2 = new Subscriber();
+
+            subscriber.Subscribe(youtubeChannel1);
+            subscriber2.Subscribe(youtubeChannel1);
+
+            subscriber.Subscribe(youtubeChannel2);
+            subscriber2.Subscribe(youtubeChannel2);
+
+            youtubeChannel1.UploadVideo("Video 1");
+            youtubeChannel2.UploadVideo("Video 1");
+            
+        }
+
+        //public delegate void VideoUploaded(string videoTitle);
+    
+        public class VideoInfoEventArgs : EventArgs
+        {
+            public string Title { get; set; }
+            public int Duration { get; set; }
+        }
+
+        public class YoutubeChannel
+        {
+            public event EventHandler<VideoInfoEventArgs> videoUploaded;
+
+            public string ChannelName { get; set; }
+            public void UploadVideo(string title)
+            {
+                Console.WriteLine($"Video {title} is uploaded");
+                videoUploaded.Invoke(this, new VideoInfoEventArgs() {Title = "Video", Duration = 15});
+            }
+        }
+
+        public class Subscriber
+        {
+
+            public void Subscribe(YoutubeChannel channel)
+            {
+                channel.videoUploaded += WatchVideo;
+            }
+
+            public void WatchVideo(object sender, VideoInfoEventArgs e)
+            {
+                YoutubeChannel channel = (YoutubeChannel)sender;
+                Console.WriteLine($"User watched video {e.Title} with duration {e.Duration} min from {channel.ChannelName}");
+            }
+        }
+       
+    }
+
+ 
+}
