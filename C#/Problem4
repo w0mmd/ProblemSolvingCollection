@@ -1,0 +1,78 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ConsoleApp4
+{
+    public class NewsArticle
+    {
+        public string Title {  get;}
+        public string Content { get;}
+
+        public NewsArticle(string Title, string Content)
+        {
+            this.Title = Title;
+            this.Content = Content;
+        }
+
+    }
+
+    public class NewsPublisher
+    {
+        public event EventHandler<NewsArticle> NewsArticlePublished;
+
+        public void NewsArticlePublisher(string Title, string Content)
+        {
+            var Article = new NewsArticle(Title, Content);
+            NewsArticlePublisher(Article);
+        }
+
+        protected virtual void NewsArticlePublisher(NewsArticle article)
+        {
+            NewsArticlePublished?.Invoke(this, article);
+        }
+    }
+
+    public class NewSubscriber
+    {
+        string Name { get; }
+
+        public NewSubscriber(string Name)
+        {
+            this.Name = Name;
+        }
+
+        public void Subscribe(NewsPublisher publisher)
+        {
+            publisher.NewsArticlePublished += News;
+        }
+        public void Unsubscribe(NewsPublisher publisher)
+        {
+            publisher.NewsArticlePublished -= News;
+        }
+
+        public void News(object sender, NewsArticle newsArticle)
+        {
+            Console.WriteLine($"Name: {Name} has recieved new news.");
+            Console.WriteLine($"Title: {newsArticle.Title}");
+            Console.WriteLine($"Content: {newsArticle.Content}.");
+            Console.WriteLine();
+        }
+
+    }
+
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            NewsPublisher publisher = new NewsPublisher();
+            NewSubscriber subscriber1 = new NewSubscriber("Subscriber1");
+
+            subscriber1.Subscribe(publisher);
+            publisher.NewsArticlePublisher("Breaking News", "Heavy raining");
+
+        }
+    }
+}
