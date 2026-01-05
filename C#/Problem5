@@ -1,0 +1,131 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Security.Cryptography.X509Certificates;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace OrderEvent
+{
+
+    public class OrderEventArgs : EventArgs
+    {
+        public int OrderID { get; }
+        public int OrderTotalPrice { get; }
+        public string ClientEmail { get; }
+
+        public OrderEventArgs(int OrderID, int OrderTotalPrice, string ClientEmail)
+        {
+            this.OrderID = OrderID;
+            this.OrderTotalPrice = OrderTotalPrice;
+            this.ClientEmail = ClientEmail;
+        }
+
+    }
+
+    public class Order
+    {
+        public event EventHandler<OrderEventArgs> OnOrderCreated;
+
+        public void Create(int OrderID, int OrderTotalPrice, string ClientEmail)
+        {
+            Console.WriteLine("New order created now we will notify everyone.");
+
+            if(OnOrderCreated != null)
+            {
+                OnOrderCreated(this, new OrderEventArgs(OrderID, OrderTotalPrice, ClientEmail));
+            }
+        }
+
+        
+
+    }
+
+    public class EmailService
+    {
+        public void Subscribe(Order order)
+        {
+            order.OnOrderCreated += SendEmailHandler;
+        }
+        public void UnSubscribe(Order order)
+        {
+            order.OnOrderCreated -= SendEmailHandler;
+        }
+
+        public void SendEmailHandler(object sender, OrderEventArgs e)
+        {
+            Console.WriteLine("---------Email Service---------");
+            Console.WriteLine($"Order ID {e.OrderID}");
+            Console.WriteLine($"Order Price {e.OrderTotalPrice}");
+            Console.WriteLine($"Email {e.ClientEmail}");
+            Console.WriteLine($"\nSend an email");
+            Console.WriteLine("-------------------------------");
+            Console.WriteLine();
+        }
+    }
+
+    public class SMSService
+    {
+        public void Subscribe(Order order)
+        {
+            order.OnOrderCreated += SendSMSHandler;
+        }
+        public void UnSubscribe(Order order)
+        {
+            order.OnOrderCreated -= SendSMSHandler;
+        }
+
+        public void SendSMSHandler(object sender, OrderEventArgs e)
+        {
+            Console.WriteLine("---------SMSService Service---------");
+            Console.WriteLine($"Order ID {e.OrderID}");
+            Console.WriteLine($"Order Price {e.OrderTotalPrice}");
+            Console.WriteLine($"Email {e.ClientEmail}");
+            Console.WriteLine($"\nSend an SMS");
+            Console.WriteLine("-------------------------------");
+            Console.WriteLine();
+        }
+    }
+    public class ShippingService
+    {
+        public void Subscribe(Order order)
+        {
+            order.OnOrderCreated += SendShippingHandler;
+        }
+        public void UnSubscribe(Order order)
+        {
+            order.OnOrderCreated -= SendShippingHandler;
+        }
+
+        public void SendShippingHandler(object sender, OrderEventArgs e)
+        {
+            Console.WriteLine("---------Shipping Service---------");
+            Console.WriteLine($"Order ID {e.OrderID}");
+            Console.WriteLine($"Order Price {e.OrderTotalPrice}");
+            Console.WriteLine($"Email {e.ClientEmail}");
+            Console.WriteLine($"\nSend an SMS");
+            Console.WriteLine("----------------------------------");
+            Console.WriteLine();
+        }
+    }
+    internal class Program
+    {
+
+
+        static void Main(string[] args)
+        {
+            Order order = new Order();
+            EmailService emailService = new EmailService();
+            SMSService SMSService = new SMSService();
+            ShippingService shippingService = new ShippingService();
+
+            emailService.Subscribe(order);
+            SMSService.Subscribe(order);
+            shippingService.Subscribe(order);
+
+            order.Create(1, 50, "am492@gmail.com");
+
+
+        }
+    }
+}
