@@ -1,0 +1,83 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading;
+using System.Threading.Tasks;
+
+namespace Thermo
+{
+   
+    public class TempertureChangeEventArgs : EventArgs
+    {
+        public int NewTemperture { get; }
+        public int OldTemperture { get; }
+        public int Difference { get; }
+
+        public TempertureChangeEventArgs(int NewTemperture, int OldTemperture)
+        {
+            this.NewTemperture = NewTemperture;
+            this.OldTemperture = OldTemperture;
+            this.Difference = NewTemperture - OldTemperture;    
+        }
+
+    }
+
+    public class Thermostat
+    {
+        public event EventHandler<TempertureChangeEventArgs> TempertureChanged;
+
+        int CurrentTemperture;
+        int OldTemperture;
+
+        public void SetTemperture(int NewTemperture)
+        {
+            OldTemperture = CurrentTemperture;
+            CurrentTemperture = NewTemperture;
+            OnTempertureChanged(OldTemperture, CurrentTemperture);
+        }
+
+        private void OnTempertureChanged(int OldTemperture, int NewTemperture)
+        {
+            OnTempertureChanged(new TempertureChangeEventArgs(OldTemperture, NewTemperture));
+        }
+
+        protected virtual void OnTempertureChanged(TempertureChangeEventArgs e)
+        {
+            TempertureChanged?.Invoke(this, e);
+        }
+
+    }
+
+    public class Display
+    {
+        public void Subscribe(Thermostat thermostat)
+        {
+            thermostat.TempertureChanged += HandlerTempertureChange;
+        }
+
+        private void HandlerTempertureChange(object sender, TempertureChangeEventArgs e)
+        {
+            Console.WriteLine($"Old Temperture: {e.OldTemperture}");
+            Console.WriteLine($"New Temperture: {e.NewTemperture}");
+            Console.WriteLine($"Temperture Difference: {e.Difference}");
+        }
+    }
+
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+
+            Thermostat thermostat = new Thermostat();
+            Display display = new Display();
+
+            display.Subscribe(thermostat);
+
+            thermostat.SetTemperture(20);
+            thermostat.SetTemperture(50);
+        
+
+        }
+    }
+}
