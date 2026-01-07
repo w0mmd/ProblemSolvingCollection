@@ -1,0 +1,56 @@
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Logger_Example
+{
+    public class Logger
+    {
+
+
+        public delegate void LogAction(string message);
+
+        public LogAction _LogAction;
+
+        public Logger(LogAction action)
+        {
+            _LogAction = action;
+        }
+
+        public void Log(string message)
+        {
+            _LogAction(message);
+        }
+
+    }
+
+    internal class Program
+    {
+        public static void LogOnScreen(string message)
+        {
+            Console.WriteLine(message);
+        }
+        public static void LogOnFile(string message)
+        {
+            string FileName = "Log.txt";
+            using(StreamWriter writer  = new StreamWriter(FileName, true))
+            {
+                writer.WriteLine(message);
+            }
+            
+        }
+        static void Main(string[] args)
+        {
+
+            Logger LogToScreen = new Logger(LogOnScreen);
+            Logger LogToFile = new Logger(LogOnFile);
+
+            LogToScreen.Log("This message is for the screen.");
+            LogToFile.Log("This message is for the file.");
+
+        }
+    }
+}
