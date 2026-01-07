@@ -1,0 +1,59 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Calculator_Example
+{
+    public class Calculator
+    {
+        public delegate double Calculate(double x, double y);
+        Calculate _calculate;
+        public Calculator(Calculate calculate)
+        {
+            _calculate = calculate;
+        }
+
+        public double MyCalculator(double x, double y)
+        {
+            return _calculate(x, y);
+        }
+
+    }
+
+    internal class Program
+    {
+
+        public static double Add(double x, double y)
+        {
+            return x + y;
+        }
+        public static double Subtract(double x, double y)
+        {
+            return x - y;
+        }
+        public static double Multiply(double x, double y)
+        {
+            return x * y;
+        }
+        public static double Divide(double x, double y)
+        {
+            return x == 0? 0 : x / y;
+        }
+        static void Main(string[] args)
+        {
+            Calculator add = new Calculator(Add);
+            Calculator subtract = new Calculator(Subtract);
+            Calculator multiply = new Calculator(Multiply);
+            Calculator divide = new Calculator(Divide);
+
+            Console.WriteLine(add.MyCalculator(5, 5)); 
+            Console.WriteLine(subtract.MyCalculator(5, 5));
+            Console.WriteLine(multiply.MyCalculator(5, 5)); 
+            Console.WriteLine(divide.MyCalculator(5, 5)); 
+        
+
+        }
+    }
+}
